@@ -18,6 +18,17 @@ osc:
 
 http:
   port: 8080                # API: /api/status, /api/fire, /api/reload ...
+  bind: 0.0.0.0             # use 127.0.0.1 to allow this machine only
+  # POSTs (fire, output, reload) are accepted from this machine always, and from other
+  # machines only with this token (header "x-token: <token>" or "Authorization: Bearer
+  # <token>"). Empty = remote POSTs refused. GETs (status, dmx) stay open on the VLAN.
+  # Prefer the TPBC_HTTP_TOKEN environment variable so the token is not committed.
+  token: ""
+
+# Remember the running look so a restart or crash does not black out the stage.
+state:
+  file: state/last-look.json
+  restore_max_age_minutes: 360   # 0 = never restore; older saves are ignored
 
 # Send state back to Companion custom variables (create them in Companion first:
 # tpbc_lights_cue, tpbc_lights_look, tpbc_lights_master). Off until they exist.

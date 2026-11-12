@@ -6,7 +6,8 @@ export interface Config {
   host: string;
   artnet: { enabled: boolean; node: string; port: number; universe: number; fps: number };
   osc: { port: number };
-  http: { port: number };
+  http: { port: number; bind: string; token: string };
+  state: { file: string; restore_max_age_minutes: number };
   companion_feedback: { enabled: boolean; url: string; variables: { cue: string; look: string; master: string } };
   zero_fade_means_default: boolean;
   service_lock: { windows: { days: string[]; start: string; end: string }[] };
@@ -18,7 +19,8 @@ export function loadConfig(root: string): Config {
     host: c.host,
     artnet: { enabled: process.env.TPBC_ARTNET_ENABLED ? process.env.TPBC_ARTNET_ENABLED === '1' : !!c.artnet?.enabled, node: process.env.TPBC_ARTNET_NODE ?? c.artnet?.node ?? '10.1.20.11', port: c.artnet?.port ?? 6454, universe: c.artnet?.universe ?? 0, fps: c.artnet?.fps ?? 40 },
     osc: { port: c.osc?.port ?? 21600 },
-    http: { port: c.http?.port ?? 8080 },
+    http: { port: c.http?.port ?? 8080, bind: c.http?.bind ?? '0.0.0.0', token: process.env.TPBC_HTTP_TOKEN ?? c.http?.token ?? '' },
+    state: { file: join(root, c.state?.file ?? 'state/last-look.json'), restore_max_age_minutes: c.state?.restore_max_age_minutes ?? 360 },
     companion_feedback: c.companion_feedback ?? { enabled: false, url: '', variables: { cue: '', look: '', master: '' } },
     zero_fade_means_default: c.zero_fade_means_default ?? true,
     service_lock: { windows: c.service_lock?.windows ?? [] },

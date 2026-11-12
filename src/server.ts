@@ -10,6 +10,7 @@ import { Engine, type Status } from './engine.ts';
 import { decodeOsc } from './osc.ts';
 import { ArtNetSender } from './artnet.ts';
 import { loadConfig, lockedNow } from './config.ts';
+import { loadState, saveState } from './state.ts';
 
 const root = process.env.TPBC_LIGHTS_ROOT ?? join(dirname(fileURLToPath(import.meta.url)), '..');
 const cfg = loadConfig(root);
@@ -24,6 +25,14 @@ if (errors.length) {
 }
 const engine = new Engine(first.show, { zeroFadeMeansDefault: cfg.zero_fade_means_default, log });
 log(`loaded ${Object.keys(first.show.cues).length} cues, ${Object.keys(first.show.fixtures).length} fixtures`);
+
+// A stray exception must not stop the lights: log it and keep running.
+process.on('uncaughtException', e => log(`UNCAUGHT ${e.stack ?? e}`));
+process.on('unhandledRejection', e => log(`UNHANDLED REJECTION ${e}`));
+
+// Bring back the look that was running before a restart or crash.
+const saved = loadState(cfg.state.file, cfg.state.restore_max_age_minutes);
+if (saved) log(`restored ${engine.restore(saved)} active cue(s) from ${cfg.state.file}`);
 
 const recent: { at: string; from: string; address: string; result: string }[] = [];
 const unmatched = new Map<string, number>();
@@ -44,21 +53,38 @@ osc.on('message', (buf, rinfo) => {
     log(`${r.ok ? 'OSC' : 'OSC UNMATCHED'} ${rinfo.address} ${m.address} ${JSON.stringify(m.args)} -> ${r.message}`);
   }
 });
+osc.on('error', e => log(`OSC socket error: ${e.message}`));
 osc.bind(cfg.osc.port, () => log(`OSC listening on udp ${cfg.osc.port}`));
 
 // ---------- Art-Net out ----------
 const artnet = new ArtNetSender(cfg.artnet.node, cfg.artnet.port, cfg.artnet.universe);
 let outputEnabled = cfg.artnet.enabled;
 let lastFrame: Uint8Array = new Uint8Array(512);
+let lastRenderError = 0;
 setInterval(() => {
-  lastFrame = engine.render();
-  if (outputEnabled) artnet.send(lastFrame);
+  try {
+    lastFrame = engine.render();
+    if (outputEnabled) artnet.send(lastFrame);
+  } catch (e) {
+    // keep sending the last good frame rather than dropping the process
+    if (outputEnabled) artnet.send(lastFrame);
+    if (Date.now() - lastRenderError > 5000) { lastRenderError = Date.now(); log(`RENDER ERROR ${(e as Error).stack ?? e}`); }
+  }
 }, Math.round(1000 / cfg.artnet.fps));
 log(`Art-Net ${outputEnabled ? 'ON' : 'OFF (shadow mode)'} -> ${cfg.artnet.node} universe ${cfg.artnet.universe}`);
 
 // ---------- Companion feedback ----------
 let lastSent: Partial<Record<'cue' | 'look' | 'master', string>> = {};
+let saveTimer: ReturnType<typeof setTimeout> | null = null;
+const scheduleSave = () => {
+  if (saveTimer) return;
+  saveTimer = setTimeout(() => {
+    saveTimer = null;
+    try { saveState(cfg.state.file, engine.snapshot()); } catch (e) { log(`could not save state: ${(e as Error).message}`); }
+  }, 200);
+};
 engine.onChange = (s: Status) => {
+  scheduleSave();
   const fb = cfg.companion_feedback;
   if (!fb.enabled) return;
   const page = s.selectedPage;
@@ -76,15 +102,28 @@ const json = (res: ServerResponse, code: number, body: unknown) => {
   res.writeHead(code, { 'content-type': 'application/json' });
   res.end(JSON.stringify(body, null, 2));
 };
+const MAX_BODY = 64 * 1024;
 const readBody = (req: IncomingMessage) => new Promise<any>(resolve => {
   let d = '';
-  req.on('data', c => (d += c));
+  req.on('data', c => { d += c; if (d.length > MAX_BODY) { d = ''; req.destroy(); resolve({}); } });
   req.on('end', () => { try { resolve(d ? JSON.parse(d) : {}); } catch { resolve({}); } });
 });
+
+const isLoopback = (a?: string) => a === '127.0.0.1' || a === '::1' || a === '::ffff:127.0.0.1';
+/** Changing anything over HTTP needs to come from this machine, or carry the token. */
+const mayPost = (req: IncomingMessage): boolean => {
+  if (isLoopback(req.socket.remoteAddress)) return true;
+  if (!cfg.http.token) return false;
+  const given = req.headers['x-token'] ?? (req.headers.authorization ?? '').replace(/^Bearer\s+/i, '');
+  return given === cfg.http.token;
+};
 
 createServer(async (req, res) => {
   const url = new URL(req.url ?? '/', 'http://x');
   try {
+    if (req.method === 'POST' && !mayPost(req)) {
+      return json(res, 403, { ok: false, message: 'POST from another machine needs the HTTP token (see config http.token)' });
+    }
     if (req.method === 'GET' && (url.pathname === '/' || url.pathname === '/api/status')) {
       return json(res, 200, { ...engine.status(), output: outputEnabled ? 'on' : 'shadow', locked: lockedNow(cfg), recent: recent.slice(0, 20), unmatched: Object.fromEntries(unmatched) });
     }
@@ -119,6 +158,12 @@ createServer(async (req, res) => {
   } catch (e) {
     json(res, 500, { error: (e as Error).message });
   }
-}).listen(cfg.http.port, () => log(`HTTP API on http://0.0.0.0:${cfg.http.port}`));
+}).listen(cfg.http.port, cfg.http.bind, () => log(`HTTP API on http://${cfg.http.bind}:${cfg.http.port}`));
 
-process.on('SIGTERM', () => { log('stopping'); process.exit(0); });
+const stop = () => {
+  log('stopping');
+  try { saveState(cfg.state.file, engine.snapshot()); } catch { /* best effort */ }
+  process.exit(0);
+};
+process.on('SIGTERM', stop);
+process.on('SIGINT', stop);

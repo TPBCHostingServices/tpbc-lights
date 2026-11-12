@@ -169,3 +169,49 @@ test('reload keeps the running cue', () => {
   e.reload(fresh);
   assert.deepEqual(e.status().active, ['Youth/Wonder/CHORUS']);
 });
+
+test('snapshot/restore brings back the same look at once, without a dark-change', () => {
+  const a = make();
+  a.e.handleOsc('/live/Youth/select');
+  a.e.handleOsc('/live/Youth/Wonder/CHORUS/activate');
+  a.e.handleOsc('/live/Control_Panel/cue/HOUSE_100%/toggle');
+  a.e.setMaster(0.5);
+  a.clock.t = 20;
+  const before = Array.from(a.e.render(20));
+  const snap = JSON.parse(JSON.stringify(a.e.snapshot()));
+
+  const b = make();            // a fresh engine, as after a restart
+  assert.equal(b.e.restore(snap), 2);
+  assert.deepEqual(b.e.status().currentSong, a.e.status().currentSong);
+  assert.equal(b.e.status().master, 50);
+  assert.deepEqual(Array.from(b.e.render(0)), before);
+});
+
+test('restore skips cues that no longer exist', () => {
+  const b = make();
+  assert.equal(b.e.restore({ active: ['Youth/Gone/CHORUS', 'Control_Panel/cue/SERMON'], master: 1, selectedPage: 'Nope', currentSong: {} }), 1);
+});
+
+test('saved state is ignored when stale, missing or corrupt', async () => {
+  const { saveState, loadState } = await import('../src/state.ts');
+  const { mkdtempSync, writeFileSync } = await import('node:fs');
+  const { tmpdir } = await import('node:os');
+  const file = join(mkdtempSync(join(tmpdir(), 'tpbc-')), 'sub', 'last.json');
+  const snap = { active: ['Control_Panel/cue/SERMON'], master: 1, selectedPage: null, currentSong: {} };
+  const t0 = new Date('2026-11-15T15:00:00Z');
+  assert.equal(loadState(file, 360, t0), null);                                   // missing
+  saveState(file, snap, t0);
+  assert.deepEqual(loadState(file, 360, new Date(t0.getTime() + 60_000))?.active, snap.active);
+  assert.equal(loadState(file, 360, new Date(t0.getTime() + 7 * 3600_000)), null); // 7 h old
+  assert.equal(loadState(file, 0, t0), null);                                      // disabled
+  writeFileSync(file, '{not json');
+  assert.equal(loadState(file, 360, t0), null);                                    // corrupt
+});
+
+test('service lock windows', async () => {
+  const { lockedNow } = await import('../src/config.ts');
+  const cfg: any = { service_lock: { windows: [{ days: ['sun'], start: '08:00', end: '13:30' }] } };
+  assert.ok(lockedNow(cfg, new Date(2026, 10, 15, 10, 0)));   // Sunday 10:00
+  assert.equal(lockedNow(cfg, new Date(2026, 10, 15, 13, 30)), null); // end is exclusive
+  assert.equal(lockedNow(cfg, new Date(2026, 10, 16, 10, 0)), null);  // Monday
+});

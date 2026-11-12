@@ -45,6 +45,16 @@ cd tpbc-lights && bash deploy/install-pi.sh
 
 Then install Claude Code on the Pi and sign in, so changes can be made right there.
 
+## Restarts and the HTTP API
+
+- The running look is saved to `state/last-look.json` and restored on start (if saved within
+  `state.restore_max_age_minutes`, default 6 h), so a restart or crash mid-service does not
+  black out the stage. Set it to 0 to start dark.
+- HTTP POSTs (`/api/fire`, `/api/output`, `/api/reload`) work from the Pi itself. From other
+  machines they need `TPBC_HTTP_TOKEN` (or `http.token`) sent as `x-token` or
+  `Authorization: Bearer`. GETs stay open. `http.bind: 127.0.0.1` closes the port to the VLAN.
+  FreeShow and Companion use OSC, which is unaffected.
+
 ## Gate A: bench checks before it touches a service
 
 Do these on a weeknight with Lightkey's output off (or the DMX-AN unplugged from Lightkey):

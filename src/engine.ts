@@ -45,6 +45,14 @@ interface Active { cue: Cue; seq: number }
 
 export interface FireResult { ok: boolean; message: string }
 
+/** What survives a restart: enough to bring the lights back to the same look. */
+export interface Snapshot {
+  active: string[];   // cue ids, oldest first (activation order decides who wins)
+  master: number;     // 0-1
+  selectedPage: string | null;
+  currentSong: Record<string, string>;
+}
+
 export interface Status {
   active: string[];
   master: number;
@@ -66,6 +74,7 @@ export class Engine {
   selectedPage: string | null = null;
   currentSong: Record<string, string> = {};
   onChange: ((s: Status) => void) | null = null;
+  private instant = false; // while restoring: no fades, no dark-change
   log: (msg: string) => void;
 
   constructor(show: Show, opts: { now?: Clock; zeroFadeMeansDefault?: boolean; log?: (m: string) => void } = {}) {
@@ -106,6 +115,33 @@ export class Engine {
     }
     if (this.selectedPage && !show.pages[this.selectedPage]) this.selectedPage = Object.keys(show.pages)[0] ?? null;
     this.apply(fade);
+  }
+
+  snapshot(): Snapshot {
+    const active = [...this.active.values()].sort((a, b) => a.seq - b.seq).map(a => a.cue.id);
+    return { active, master: this.master.to, selectedPage: this.selectedPage, currentSong: { ...this.currentSong } };
+  }
+
+  /** Bring back a saved look at once (used after a restart). Unknown cues are skipped. */
+  restore(snap: Snapshot): number {
+    this.instant = true;
+    try {
+      let n = 0;
+      this.active.clear();
+      for (const id of snap.active ?? []) {
+        const cue = id.startsWith('sequence/') ? this.show.sequences[id.slice(9)] : this.show.cues[id];
+        if (!cue) continue;
+        this.active.set(id, { cue, seq: ++this.seq });
+        n++;
+      }
+      this.currentSong = {};
+      for (const [pg, id] of Object.entries(snap.currentSong ?? {})) if (this.show.cues[id]) this.currentSong[pg] = id;
+      if (snap.selectedPage && this.show.pages[snap.selectedPage]) this.selectedPage = snap.selectedPage;
+      const m = typeof snap.master === 'number' && Number.isFinite(snap.master) ? Math.min(1, Math.max(0, snap.master)) : 1;
+      this.master = new Tr(m, m, this.now(), 0);
+      this.apply(0);
+      return n;
+    } finally { this.instant = false; }
   }
 
   activate(id: string, fade?: number): FireResult {
@@ -286,7 +322,7 @@ export class Engine {
     st.wheelTarget = slot;
     const dc = p.darkChange;
     const dist = from && to ? Math.abs(from.index - to.index) : 0;
-    if (!dc || dist <= dc.maxFreeSlots) {
+    if (!dc || dist <= dc.maxFreeSlots || this.instant) {
       st.wheelSwitchAt = now;
       st.wheel = slot;
       return;

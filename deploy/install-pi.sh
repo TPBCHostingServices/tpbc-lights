@@ -10,7 +10,8 @@ echo "== time zone (service lock windows use local time)"
 sudo timedatectl set-timezone America/New_York
 
 echo "== Node.js 24 LTS"
-if ! command -v node >/dev/null || [ "$(node -p 'process.versions.node.split(".")[0]')" -lt 22 ]; then
+# Needs Node 22.18+ (runs TypeScript directly)
+if ! command -v node >/dev/null || ! node -e 'const [a,b]=process.versions.node.split(".").map(Number); process.exit(a>22||(a===22&&b>=18)?0:1)'; then
   curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
   sudo apt-get install -y nodejs
 fi

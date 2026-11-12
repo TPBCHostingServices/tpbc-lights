@@ -1,6 +1,6 @@
 [Unit]
 Description=TPBC Lights (OSC -> Art-Net lighting controller)
-After=network-online.target
+After=network-online.target time-sync.target
 Wants=network-online.target
 
 [Service]
