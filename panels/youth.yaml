@@ -1,0 +1,35 @@
+# Youth panel buttons (Companion pages 8 / 13)
+# Converted from Lightkey (export 2026-11-11) by tools/convert-lightkey.ts.
+# Edit freely; this file is now the source of truth.
+
+page: Youth
+
+buttons:
+  "HOUSE 100%":
+    fade: 0.5
+    exclusive: house
+    HOUSE: { level: 100 }
+  SERMON:
+    fade: 0.5
+    exclusive: looks
+    PAR: { color: white, level: 100 }
+    BARS: { color: white, level: 50 }
+    MH: { color: white, level: 0, position: upper_wash }
+    HOUSE: { level: 100 }
+  PRE_POST:
+    fade: 0.5
+    exclusive: looks
+    PAR: { color: white, level: 100 }
+    BARS: { color: white, level: 76 }
+    MH: { level: 15, position: upper_wash }
+    HOUSE: { level: 100 }
+  "HOUSE 0%":
+    fade: 0.5
+    exclusive: house
+    HOUSE: { level: 0 }
+  "FULL WHITE":
+    fade: 0.5
+    PAR: { color: white, level: 100 }
+    BARS: { color: white, level: 100 }
+    MH: { color: white, level: 75 }
+    HOUSE: { level: 100 }

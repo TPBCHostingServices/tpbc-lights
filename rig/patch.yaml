@@ -1,0 +1,49 @@
+# TPBC Lights patch. Source: Lightkey export 2026-11-11 (Lightkey 6.1.1 save).
+# One Art-Net universe through the Chauvet DMX-AN at 10.1.20.11 (see config/config.yaml).
+
+fixtures:
+  # name: { profile, address }  address = DMX start channel (1-512)
+  P1:  { profile: chauvet-slimpar-56-7ch, address: 1 }
+  P2:  { profile: chauvet-slimpar-56-7ch, address: 8 }
+  B1:  { profile: chauvet-colorrail-irc-7ch, address: 15 }
+  B2:  { profile: chauvet-colorrail-irc-7ch, address: 22 }
+  B4:  { profile: chauvet-colorrail-irc-7ch, address: 29 }
+  P3:  { profile: chauvet-slimpar-56-7ch, address: 36 }
+  B6:  { profile: chauvet-colorrail-irc-7ch, address: 43 }
+  B7:  { profile: chauvet-colorrail-irc-7ch, address: 50 }
+  MH1: { profile: chauvet-intimidator-spot-led-150-11ch, address: 57 }
+  MH2: { profile: chauvet-intimidator-spot-led-150-11ch, address: 68 }
+  MH3: { profile: chauvet-intimidator-spot-led-150-11ch, address: 79 }
+  MH4: { profile: chauvet-intimidator-spot-led-150-11ch, address: 90 }
+  B5:  { profile: chauvet-colorrail-irc-7ch, address: 102 }
+  B3:  { profile: rockville-rockstrip-252-7ch, address: 109 }
+  P6:  { profile: uking-zq01047-7ch, address: 116 }
+  P7:  { profile: uking-zq01047-7ch, address: 130 }
+  # Tent house lights: eight 1-channel circuits, always driven together (Spencer, 11/12).
+  # Lightkey names in brackets.
+  H200: { profile: generic-dimmer, address: 200 }   # [na]
+  H201: { profile: generic-dimmer, address: 201 }   # [STG]
+  H202: { profile: generic-dimmer, address: 202 }   # [na1]
+  H203: { profile: generic-dimmer, address: 203 }   # [MID]
+  H204: { profile: generic-dimmer, address: 204 }   # [STG1]
+  H205: { profile: generic-dimmer, address: 205 }   # [REAR]
+  H206: { profile: generic-dimmer, address: 206 }   # [na2]
+  H207: { profile: generic-dimmer, address: 207 }   # [na3]
+  P4:  { profile: chauvet-slimpar-56-7ch, address: 240 }
+  P5:  { profile: chauvet-slimpar-56-7ch, address: 247 }
+
+groups:
+  PAR:   [P1, P2, P3, P4, P5, P6, P7]
+  BARS:  [B1, B2, B3, B4, B5, B6, B7]
+  MH:    [MH1, MH2, MH3, MH4]
+  HOUSE: [H200, H201, H202, H203, H204, H205, H206, H207]
+
+# Moving-head calibration. Lightkey angles: pan 0-540 deg, tilt -135..+135 deg (0 = straight
+# out of the head). The DMX conversion assumes 0 deg pan = DMX 0 and tilt -135 = DMX 0.
+# VERIFY ON THE BENCH (Gate A) with Upper Wash: if the beams land somewhere else, adjust
+# these per fixture rather than changing every preset.
+calibration:
+  MH1: { pan_offset: 0, tilt_offset: 0, pan_invert: false, tilt_invert: false }
+  MH2: { pan_offset: 0, tilt_offset: 0, pan_invert: false, tilt_invert: false }
+  MH3: { pan_offset: 0, tilt_offset: 0, pan_invert: false, tilt_invert: false }
+  MH4: { pan_offset: 0, tilt_offset: 0, pan_invert: false, tilt_invert: false }

@@ -1,0 +1,42 @@
+# TPBC Lights runtime settings.
+
+host: 10.1.20.23            # this Pi (static, VLAN 20)
+
+artnet:
+  # Shadow mode: false = compute everything but send nothing (safe to run alongside
+  # Lightkey). Set true at cutover, with Lightkey's output off.
+  enabled: false
+  node: 10.1.20.11          # Chauvet DMX-AN
+  port: 6454
+  # Art-Net port-address. Lightkey "universe 1" is normally Art-Net 0. VERIFY on the
+  # DMX-AN web page (Gate A); change to 1 if the node expects it.
+  universe: 0
+  fps: 40
+
+osc:
+  port: 21600               # same port Lightkey used, so FreeShow/Companion only change IP
+
+http:
+  port: 8080                # API: /api/status, /api/fire, /api/reload ...
+
+# Send state back to Companion custom variables (create them in Companion first:
+# tpbc_lights_cue, tpbc_lights_look, tpbc_lights_master). Off until they exist.
+companion_feedback:
+  enabled: false
+  url: http://10.1.20.25:8000
+  variables:
+    cue: tpbc_lights_cue
+    look: tpbc_lights_look
+    master: tpbc_lights_master
+
+# Fade argument sent by Companion's Lightkey buttons (always 0). true = 0 means
+# "use the cue's own fade"; false = snap. VERIFY against how Lightkey behaves today.
+zero_fade_means_default: true
+
+# Service lock: show-file reloads are refused during these windows unless forced.
+# Times are the Pi's local time (set the Pi to America/New_York).
+service_lock:
+  windows:
+    - { days: [sun], start: "08:00", end: "13:30" }
+    - { days: [wed], start: "18:30", end: "21:30" }
+    - { days: [fri], start: "18:00", end: "22:30" }

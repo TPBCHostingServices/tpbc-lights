@@ -1,0 +1,13 @@
+# Named colours for PARs and Bars, as R/G/B percent. From the Lightkey PAR and WALL WASH
+# colour presets. Add new names freely; cues may also give [r, g, b] directly.
+red:        [100, 0, 0]
+dark_blue:  [0, 0, 100]
+pink:       [100, 0, 100]
+yellow:     [100, 100, 0]
+green:      [0, 100, 0]
+violet:     [53, 0, 95]
+orange:     [100, 38, 0]
+gold:       [100, 73, 0]
+turquoise:  [0, 100, 64]
+cyan:       [0, 100, 100]
+white:      [100, 100, 100]

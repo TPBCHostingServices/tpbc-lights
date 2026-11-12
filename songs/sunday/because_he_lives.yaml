@@ -1,0 +1,32 @@
+# Because_He_Lives (Control Panel page)
+# Converted from Lightkey (export 2026-11-11) by tools/convert-lightkey.ts.
+# Edit freely; this file is now the source of truth.
+
+page: Control_Panel
+folder: Because_He_Lives
+
+cues:
+  INTRO:
+    fade: 3
+    PAR: { color: [50, 75, 100], level: 20 }
+    BARS: { color: [75, 50, 100], level: 25 }
+    MH: { level: 0, position: upper_wash }
+    HOUSE: { level: 0 }
+  VERSE:
+    fade: 3.5
+    PAR: { color: [70, 85, 100], level: 35 }
+    BARS: { color: [75, 50, 100], level: 45 }
+    MH: { level: 15, position: upper_wash }
+    HOUSE: { level: 0 }
+  CHORUS:
+    fade: 2
+    PAR: { color: [90, 95, 100], level: 80 }
+    BARS: { color: [40, 80, 100], level: 85 }
+    MH: { level: 40, position: upper_wash }
+    HOUSE: { level: 0 }
+  CHORUS_2:
+    fade: 2.5
+    PAR: { color: [90, 95, 100], level: 100 }
+    BARS: { color: [40, 80, 100], level: 100 }
+    MH: { level: 60, position: upper_wash }
+    HOUSE: { level: 0 }

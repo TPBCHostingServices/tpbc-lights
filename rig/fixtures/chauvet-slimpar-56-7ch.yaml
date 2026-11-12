@@ -1,0 +1,13 @@
+# Chauvet SlimPAR 56, 7-channel mode. Used by P1-P5.
+# Channel values: QLC+ fixture definition Chauvet-SlimPAR-56.qxf.
+model: Chauvet SlimPAR 56
+mode: 7-ch
+type: rgb
+channels:
+  - red
+  - green
+  - blue
+  - { fixed: color_macro, value: 0 }   # 0-15 = no function
+  - { fixed: strobe, value: 0 }        # 0-15 = no function
+  - { fixed: mode, value: 0 }          # 0-31 = RGB (manual) mode
+  - dimmer

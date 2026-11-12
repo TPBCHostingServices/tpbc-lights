@@ -1,0 +1,29 @@
+{
+  "name": "tpbc-lights",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Turning Point Miami lighting controller: OSC in (FreeShow, Companion), Art-Net out (Chauvet DMX-AN). Show files are YAML so Claude can edit them by prompt.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "start": "node src/server.ts",
+    "check": "node tools/check.ts",
+    "test": "node --test tests/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "render": "node tools/render.ts",
+    "send": "node tools/send-osc.ts",
+    "monitor": "node tools/artnet-monitor.ts",
+    "reload": "node tools/reload.ts",
+    "addresses": "node tools/addresses.ts",
+    "convert-lightkey": "node tools/convert-lightkey.ts"
+  },
+  "dependencies": {
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.0",
+    "typescript": "^5.9.3"
+  }
+}

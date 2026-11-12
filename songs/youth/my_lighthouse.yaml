@@ -1,0 +1,46 @@
+# My_Lighthouse (Youth page)
+# Converted from Lightkey (export 2026-11-11) by tools/convert-lightkey.ts.
+# Edit freely; this file is now the source of truth.
+
+page: Youth
+folder: My_Lighthouse
+
+cues:
+  INTRO:
+    fade: 3
+    PAR: { color: [0, 58, 100], level: 20 }
+    BARS: { color: cyan, level: 30 }
+    MH: { color: blue, position: upper_wash }
+    HOUSE: { level: 0 }
+  VERSE:
+    fade: 3
+    PAR: { color: [0, 58, 100], level: 35 }
+    BARS: { color: cyan, level: 45 }
+    MH: { color: blue, position: upper_wash }
+    MH1: { level: 20 }
+    HOUSE: { level: 0 }
+  CHORUS:
+    fade: 2
+    PAR: { color: [100, 87, 70], level: 80 }
+    BARS: { color: [0, 33, 100], level: 70 }
+    MH: { level: 70, position: upper_wash, effect: { type: pan_track, period: 8 } }
+    HOUSE: { level: 0 }
+  BRIDGE:
+    fade: 10
+    PAR: { color: [100, 25, 0], level: 100 }
+    BARS: { color: [100, 67, 0], level: 100 }
+    MH: { color: orange, level: 100, position: upper_wash, effect: { type: wiper, period: 3 } }
+    HOUSE: { level: 0 }
+  CHORUS_2:
+    fade: 1
+    PAR: { color: [100, 87, 70], level: 100 }
+    BARS: { color: [100, 75, 0], level: 100 }
+    MH: { level: 100, position: { pan: -152.7, tilt: 65.6 }, effect: { type: pan_track, period: 8 } }
+    HOUSE: { level: 0 }
+  OUTRO:
+    fade: 5
+    PAR: { color: [0, 58, 100], level: 20 }
+    BARS: { color: cyan, level: 25 }
+    MH: { color: blue, position: { pan: 63.9, tilt: 6.3 } }
+    MH1: { level: 15 }
+    HOUSE: { level: 0 }

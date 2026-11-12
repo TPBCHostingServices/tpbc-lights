@@ -1,0 +1,6 @@
+# Sequences, toggled with /palette/<Name>/<start|stop|toggle> (Companion "Floor Random").
+# Lightkey's Floor Random moved the spots around the floor on the beat (90 bpm). This is a
+# close stand-in: random floor aims around Floor Wash, a new one every 2 beats (1.33 s).
+Floor Random:
+  fade: 1
+  MH: { position: floor_wash, effect: { type: random_floor } }

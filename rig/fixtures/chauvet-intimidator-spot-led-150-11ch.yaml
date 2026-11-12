@@ -1,0 +1,56 @@
+# Chauvet Intimidator Spot LED 150, 11-channel mode. Used by MH1-MH4.
+# Channel values: QLC+ Chauvet-Intimidator-Spot-LED-150.qxf. Pan 540 deg, tilt 270 deg.
+model: Chauvet Intimidator Spot LED 150
+mode: 11-ch
+type: spot
+channels:
+  - pan
+  - tilt
+  - pan_fine
+  - tilt_fine
+  - { fixed: pan_tilt_speed, value: 0 }   # 0 = fastest
+  - wheel
+  - shutter
+  - dimmer
+  - gobo
+  - { fixed: control, value: 0 }          # 0-7 = no function
+  - { fixed: movement_macro, value: 0 }   # 0-7 = no function
+pan_range: 540
+tilt_range: 270
+shutter: { open: 255, closed: 0 }          # 0-3 blackout, 216-255 open
+# Colour wheel in DMX order (Sunday rule 10/25 counts slots along this order).
+# rgb is an approximation used to pick the nearest slot from an RGB request.
+wheel:
+  - { name: white,       dmx: 2,   rgb: [100, 100, 100] }
+  - { name: yellow,      dmx: 8,   rgb: [100, 100, 0] }
+  - { name: magenta,     dmx: 14,  rgb: [100, 0, 67] }
+  - { name: green,       dmx: 20,  rgb: [16, 100, 0] }
+  - { name: red,         dmx: 26,  rgb: [100, 0, 0] }
+  - { name: cyan,        dmx: 32,  rgb: [0, 100, 83] }
+  - { name: orange,      dmx: 38,  rgb: [100, 50, 0] }
+  - { name: blue,        dmx: 44,  rgb: [0, 33, 100] }
+  - { name: light_green, dmx: 50,  rgb: [60, 100, 40] }
+  - { name: amber,       dmx: 58,  rgb: [100, 70, 0] }
+# Half positions (between two slots). Only used when asked for by name.
+# Light Orange in Lightkey is a half position; Amber + White is the closest match.
+wheel_half:
+  - { name: light_orange, dmx: 122, between: [amber, white], rgb: [100, 75, 50] }
+# Dark-change for wheel moves of more than one slot (Spencer's Sunday rule, 10/25):
+# dim to 0, move the wheel while dark, fade back up.
+dark_change:
+  max_free_slots: 1
+  dim_time: 0.5
+  dark_time: 0.6
+  dark_time_per_slot: 0.2
+  rise_time: 1.0
+# Gobo wheel. Lightkey's built-in gobo names are not yet matched to physical slots;
+# unmatched gobos render as open. VERIFY ON THE BENCH and fill in the dmx values.
+gobos:
+  open:          { dmx: 2 }
+  moons:         { dmx: null, lightkey: builtin.burst_50 }
+  spiral_twist:  { dmx: null, lightkey: builtin.spiral_70 }
+  spiral_fan:    { dmx: null, lightkey: builtin.spiral_40 }
+  beam_globe:    { dmx: null, lightkey: builtin.beams_90_globe }
+  beams_4:       { dmx: null, lightkey: builtin.beams_04 }
+  stars_large:   { dmx: null, lightkey: builtin.star_110_stars }
+  gobo_cycle:    { dmx: 160, lightkey: special.gobowheelrot }

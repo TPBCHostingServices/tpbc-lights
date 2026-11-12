@@ -1,0 +1,6 @@
+# One-channel dimmer (tent house-light circuits 200-207).
+model: Generic dimmer
+mode: 1-ch
+type: dimmer
+channels:
+  - dimmer

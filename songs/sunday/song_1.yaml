@@ -1,0 +1,66 @@
+# Song 1 (Control Panel page)
+# Converted from Lightkey (export 2026-11-11) by tools/convert-lightkey.ts.
+# Edit freely; this file is now the source of truth.
+
+page: Control_Panel
+folder: Song_1
+
+cues:
+  INTRO:
+    fade: 3
+    PAR: { color: [0, 47, 100], level: 20 }
+    BARS: { color: [0, 58, 100], level: 35 }
+    MH: { color: blue, position: upper_wash }
+    MH1: { level: 10 }
+    MH2: { level: 10 }
+    MH3: { level: 10 }
+    HOUSE: { level: 0 }
+  VERSE:
+    fade: 3.5
+    PAR: { color: [0, 47, 100], level: 35 }
+    BARS: { color: [0, 47, 100], level: 45 }
+    MH: { color: blue, level: 20, position: upper_wash }
+    HOUSE: { level: 0 }
+  CHORUS:
+    fade: 1.5
+    PAR: { color: [80, 90, 100], level: 85 }
+    BARS: { color: [0, 58, 100], level: 85 }
+    MH: { level: 70, position: upper_wash }
+    HOUSE: { level: 0 }
+  CHORUS_2:
+    fade: 1.5
+    PAR: { color: [80, 90, 100], level: 100 }
+    BARS: { color: [0, 58, 100] }
+    B1: { level: 100 }
+    B2: { level: 85 }
+    B3: { level: 85 }
+    B4: { level: 85 }
+    B5: { level: 85 }
+    B6: { level: 85 }
+    B7: { level: 85 }
+    MH: { level: 100, position: upper_wash }
+    HOUSE: { level: 0 }
+  BRIDGE:
+    fade: 4
+    PAR: { color: [0, 47, 100], level: 50 }
+    BARS: { color: [0, 58, 100], level: 60 }
+    MH: { color: blue, level: 50, position: upper_wash }
+    HOUSE: { level: 0 }
+  BRIDGE_2:
+    fade: 6
+    PAR: { color: [40, 68, 100], level: 70 }
+    BARS: { color: [0, 58, 100], level: 75 }
+    MH: { level: 60, position: upper_wash }
+    HOUSE: { level: 0 }
+  TAG:
+    fade: 0.5
+    PAR: { color: [90, 95, 100], level: 100 }
+    BARS: { color: [60, 83, 100], level: 100 }
+    MH: { level: 100, position: upper_wash }
+    HOUSE: { level: 0 }
+  OUTRO:
+    fade: 4
+    PAR: { color: [0, 47, 100], level: 25 }
+    BARS: { color: [0, 58, 100], level: 35 }
+    MH: { color: blue, level: 10, position: upper_wash }
+    HOUSE: { level: 0 }

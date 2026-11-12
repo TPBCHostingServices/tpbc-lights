@@ -1,0 +1,18 @@
+[Unit]
+Description=TPBC Lights (OSC -> Art-Net lighting controller)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=tpbc
+WorkingDirectory=/opt/tpbc-lights
+ExecStart=/usr/bin/node src/server.ts
+Restart=always
+RestartSec=2
+Environment=NODE_ENV=production
+# Keep the lighting loop responsive
+Nice=-5
+
+[Install]
+WantedBy=multi-user.target

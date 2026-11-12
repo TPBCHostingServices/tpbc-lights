@@ -1,0 +1,30 @@
+# Cuelist order per page, used by GO / BACK (/live/nextCue, /live/previousCue).
+# Folders not listed here go after these, alphabetically.
+Control_Panel:
+  cuelist_order:
+    - Song_1
+    - Song_2
+    - Song_3
+    - Washed
+    - Always_On_Time
+    - Goodness_Of_God
+    - Because_He_Lives
+    - Living_Hope
+    - Hymn_Of_Heaven
+    - Whom_Shall_I_Fear
+    - O_Praise_The_Name
+    - Been_So_Good
+Youth:
+  cuelist_order:
+    - Song_1
+    - Song_2
+    - SONG_3
+    - O_Come_To_The_Altar
+    - Whole_Heart
+    - Closer
+    - My_Lighthouse
+    - Washed
+    - The_Lord_Will_Provide
+    - Wonder
+    - Gratitude
+    - The_Author

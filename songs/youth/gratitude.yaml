@@ -1,0 +1,38 @@
+# Gratitude (Youth page)
+# Converted from Lightkey (export 2026-11-11) by tools/convert-lightkey.ts.
+# Edit freely; this file is now the source of truth.
+
+page: Youth
+folder: Gratitude
+
+cues:
+  INTRO:
+    fade: 3
+    PAR: { color: [100, 65, 0], level: 20 }
+    BARS: { color: [60, 0, 100], level: 30 }
+    MH: { color: blue, position: upper_wash }
+    HOUSE: { level: 0 }
+  VERSE:
+    fade: 3
+    PAR: { color: [100, 65, 0], level: 40 }
+    BARS: { color: [60, 0, 100], level: 45 }
+    MH: { color: light_green, level: 20, position: upper_wash }
+    HOUSE: { level: 0 }
+  CHORUS:
+    fade: 2
+    PAR: { color: [100, 82, 0], level: 85 }
+    BARS: { color: [76, 0, 100], level: 85 }
+    MH: { level: 70, effect: { type: tilt_wave, period: 10 } }
+    HOUSE: { level: 0 }
+  BRIDGE:
+    fade: 10
+    PAR: { color: [100, 65, 0], level: 50 }
+    BARS: { color: [60, 0, 100], level: 60 }
+    MH: { color: yellow, level: 40, position: upper_wash }
+    HOUSE: { level: 0 }
+  CHORUS_2:
+    fade: 1.5
+    PAR: { color: [100, 82, 0], level: 100 }
+    BARS: { color: [100, 0, 52], level: 100 }
+    MH: { color: light_green, level: 100, position: upper_wash }
+    HOUSE: { level: 0 }

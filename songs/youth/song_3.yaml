@@ -1,0 +1,50 @@
+# SONG 3 (Youth page)
+# Converted from Lightkey (export 2026-11-11) by tools/convert-lightkey.ts.
+# Edit freely; this file is now the source of truth.
+
+page: Youth
+folder: SONG_3
+
+cues:
+  INTRO:
+    fade: 10
+    PAR: { color: white, level: 100 }
+    BARS: { color: white, level: 25 }
+    MH: { color: white, level: 10, position: floor_wash, gobo: gobo_cycle }
+    HOUSE: { level: 0 }
+  "VERSE 1":
+    fade: 10
+    PAR: { color: white, level: 75 }
+    BARS: { color: turquoise, level: 50 }
+    MH: { color: white, level: 15, position: floor_wash, gobo: spiral_twist }
+    HOUSE: { level: 0 }
+  CHORUS:
+    fade: 10
+    PAR: { color: white, level: 75 }
+    BARS: { color: yellow, level: 50 }
+    MH: { color: white, level: 30, position: upper_wash, gobo: moons }
+    HOUSE: { level: 0 }
+  "VERSE 2":
+    fade: 20
+    PAR: { color: white, level: 100 }
+    BARS: { color: white, level: 50 }
+    MH: { color: white, level: 30, position: upper_wash, gobo: moons }
+    HOUSE: { level: 0 }
+  BRIDGE:
+    fade: 10
+    PAR: { color: white, level: 100 }
+    BARS: { color: white, level: 100 }
+    MH: { color: white, level: 75, position: upper_wash }
+    HOUSE: { level: 0 }
+  "CHORUS 2":
+    fade: 10
+    PAR: { color: white, level: 100 }
+    BARS: { color: dark_blue, level: 100 }
+    MH: { color: white, level: 75, position: floor_wash, gobo: moons }
+    HOUSE: { level: 0 }
+  "CHORUS 3":
+    fade: 10
+    PAR: { color: white, level: 100 }
+    BARS: { color: white, level: 100 }
+    MH: { color: white, level: 75, position: upper_wash, gobo: moons }
+    HOUSE: { level: 0 }

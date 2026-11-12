@@ -1,0 +1,13 @@
+# Position effects for the moving heads. Effects move AROUND the cue's position
+# (relative), like Lightkey's "Relative" option, so beams stay over the crowd.
+# pan / tilt = swing in degrees either side of the base aim. period = seconds per cycle
+# (a cue can override period). spread = phase offset across MH1-MH4 (0 = in unison,
+# 1 = evenly spread over one cycle).
+# Sizes are first guesses from the Youth cue notes. TUNE ON THE BENCH.
+wiper:          { shape: sine_pan,  pan: 30, tilt: 0,  period: 8,  spread: 0 }
+pan_track:      { shape: sine_pan,  pan: 45, tilt: 0,  period: 8,  spread: 0 }
+tilt_wave:      { shape: sine_tilt, pan: 0,  tilt: 12, period: 6,  spread: 0.25 }
+triangle_small: { shape: triangle,  pan: 10, tilt: 8,  period: 12, spread: 0 }
+circle:         { shape: circle,    pan: 15, tilt: 10, period: 8,  spread: 0 }
+# Floor Random sequence: a new random floor aim every 2 beats at 90 bpm.
+random_floor:   { shape: random_walk, pan: 60, tilt: 20, period: 1.33, spread: 1 }

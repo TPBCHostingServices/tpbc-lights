@@ -1,0 +1,31 @@
+# O_Praise_The_Name (Control Panel page)
+# Converted from Lightkey (export 2026-11-11) by tools/convert-lightkey.ts.
+# Edit freely; this file is now the source of truth.
+
+page: Control_Panel
+folder: O_Praise_The_Name
+
+cues:
+  INTRO:
+    fade: 3
+    PAR: { color: [100, 59, 0], level: 20 }
+    BARS: { color: [100, 47, 0], level: 25 }
+  VERSE:
+    fade: 3.5
+    PAR: { color: [100, 59, 0], level: 35 }
+    BARS: { color: [100, 84, 20], level: 45 }
+    MH: { color: yellow, level: 15 }
+  CHORUS:
+    fade: 2
+    PAR: { color: [100, 75, 0], level: 80 }
+    BARS: { color: [100, 84, 0], level: 85 }
+    MH: { color: yellow, level: 40 }
+  CHORUS_2:
+    fade: 2.5
+    PAR: { color: [100, 87, 50], level: 100 }
+    BARS: { color: [100, 84, 0], level: 100 }
+    MH: { color: yellow, level: 60 }
+  OUTRO:
+    fade: 5
+    PAR: { color: [100, 59, 0], level: 20 }
+    BARS: { color: [100, 47, 0], level: 25 }

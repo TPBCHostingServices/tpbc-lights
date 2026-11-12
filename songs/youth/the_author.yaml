@@ -1,0 +1,45 @@
+# The_Author (Youth page)
+# Converted from Lightkey (export 2026-11-11) by tools/convert-lightkey.ts.
+# Edit freely; this file is now the source of truth.
+
+page: Youth
+folder: The_Author
+
+cues:
+  VERSE:
+    fade: 3
+    PAR: { color: [100, 65, 0], level: 40 }
+    BARS: { color: [100, 0, 8], level: 45 }
+    MH: { color: light_green, level: 20, position: upper_wash }
+    HOUSE: { level: 0 }
+  CHORUS:
+    fade: 2
+    PAR: { color: [100, 82, 0], level: 85 }
+    BARS: { color: [100, 48, 0], level: 85 }
+    MH: { level: 70, effect: { type: tilt_wave, period: 10 } }
+    HOUSE: { level: 0 }
+  BRIDGE:
+    fade: 10
+    PAR: { color: [100, 0, 8], level: 50 }
+    BARS: { color: [100, 61, 0], level: 60 }
+    MH: { color: yellow, level: 40, position: upper_wash }
+    HOUSE: { level: 0 }
+  CHORUS_2:
+    fade: 3
+    PAR: { level: 100 }
+    P1: { color: [100, 82, 0] }
+    P2: { color: [100, 82, 0] }
+    P3: { color: [100, 100, 99] }
+    P4: { color: [100, 100, 99] }
+    P5: { color: [100, 100, 99] }
+    P6: { color: [100, 82, 0] }
+    P7: { color: [100, 82, 0] }
+    BARS: { color: white, level: 100 }
+    MH: { color: orange, level: 100, position: upper_wash }
+    HOUSE: { level: 0 }
+  OUTRO:
+    fade: 5
+    PAR: { color: [100, 65, 0], level: 20 }
+    BARS: { color: [100, 96, 96], level: 25 }
+    MH: { color: blue, level: 100, position: upper_wash }
+    HOUSE: { level: 0 }

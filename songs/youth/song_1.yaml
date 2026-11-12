@@ -1,0 +1,38 @@
+# Song 1 (Youth page)
+# Converted from Lightkey (export 2026-11-11) by tools/convert-lightkey.ts.
+# Edit freely; this file is now the source of truth.
+
+page: Youth
+folder: Song_1
+
+cues:
+  INTRO:
+    fade: 3.5
+    PAR: { color: red, level: 100 }
+    BARS: { color: red, level: 100 }
+    MH: { color: red, level: 75, position: upper_wash }
+    HOUSE: { level: 0 }
+  "VERSE 1":
+    fade: 3
+    PAR: { color: dark_blue, level: 100 }
+    BARS: { color: gold, level: 50 }
+    MH: { color: white, level: 15, position: upper_wash, gobo: stars_large }
+    HOUSE: { level: 0 }
+  "VERSE 2":
+    fade: 3
+    PAR: { color: dark_blue, level: 100 }
+    BARS: { color: white, level: 50 }
+    MH: { color: white, level: 75, position: upper_wash, gobo: moons }
+    HOUSE: { level: 0 }
+  "VERSE 3":
+    fade: 3.5
+    PAR: { color: white, level: 60 }
+    BARS: { color: gold, level: 50 }
+    MH: { color: white, level: 15, position: floor_wash }
+    HOUSE: { level: 0 }
+  "VERSE 4":
+    fade: 3.5
+    PAR: { color: white, level: 60 }
+    BARS: { color: white, level: 50 }
+    MH: { level: 10, position: floor_wash }
+    HOUSE: { level: 0 }

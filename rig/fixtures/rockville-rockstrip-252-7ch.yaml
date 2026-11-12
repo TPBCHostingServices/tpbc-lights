@@ -1,0 +1,13 @@
+# Rockville RockStrip 252, 7-channel mode. Used by B3.
+# Channel values: QLC+ Rockville-Rockstrip-252.qxf.
+model: Rockville RockStrip 252
+mode: 7-ch
+type: rgb
+channels:
+  - red
+  - green
+  - blue
+  - dimmer
+  - { fixed: strobe, value: 0 }
+  - { fixed: chase_mode, value: 0 }
+  - { fixed: run_mode, value: 0 }      # 0 = dimmer mode (manual control)

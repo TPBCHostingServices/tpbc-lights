@@ -1,0 +1,44 @@
+# Living_Hope (Control Panel page)
+# Converted from Lightkey (export 2026-11-11) by tools/convert-lightkey.ts.
+# Edit freely; this file is now the source of truth.
+
+page: Control_Panel
+folder: Living_Hope
+
+cues:
+  INTRO:
+    fade: 3
+    PAR: { color: [0, 17, 100], level: 20 }
+    BARS: { color: [0, 17, 100], level: 25 }
+    MH: { color: light_green, position: upper_wash }
+    HOUSE: { level: 0 }
+  VERSE:
+    fade: 3.5
+    PAR: { color: [0, 17, 100], level: 35 }
+    BARS: { color: [0, 75, 100], level: 45 }
+    MH: { color: light_green, level: 15, position: upper_wash }
+    HOUSE: { level: 0 }
+  CHORUS:
+    fade: 2
+    PAR: { color: [100, 58, 0], level: 80 }
+    BARS: { color: [100, 75, 0], level: 85 }
+    MH: { color: light_green, level: 40, position: upper_wash }
+    HOUSE: { level: 0 }
+  BRIDGE:
+    fade: 10
+    PAR: { color: [100, 58, 0], level: 60 }
+    BARS: { color: [100, 75, 0], level: 70 }
+    MH: { color: light_green, level: 30, position: upper_wash }
+    HOUSE: { level: 0 }
+  CHORUS_2:
+    fade: 2.5
+    PAR: { color: [100, 67, 0], level: 100 }
+    BARS: { color: [100, 75, 0], level: 100 }
+    MH: { color: light_green, level: 60, position: upper_wash }
+    HOUSE: { level: 0 }
+  TAG:
+    fade: 4
+    PAR: { color: [100, 58, 0], level: 30 }
+    BARS: { color: [0, 17, 100], level: 35 }
+    MH: { color: light_green, level: 20, position: upper_wash }
+    HOUSE: { level: 0 }

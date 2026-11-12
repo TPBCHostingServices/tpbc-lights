@@ -1,0 +1,54 @@
+# O_Come_To_The_Altar (Youth page)
+# Converted from Lightkey (export 2026-11-11) by tools/convert-lightkey.ts.
+# Edit freely; this file is now the source of truth.
+
+page: Youth
+folder: O_Come_To_The_Altar
+
+cues:
+  INTRO:
+    fade: 3
+    PAR: { color: [17, 0, 100], level: 20 }
+    BARS: { color: [67, 0, 100], level: 30 }
+    MH: { color: blue, position: upper_wash }
+    HOUSE: { level: 0 }
+  VERSE:
+    fade: 3
+    PAR: { color: [17, 0, 100], level: 35 }
+    BARS: { color: [67, 0, 100], level: 45 }
+    MH: { color: magenta, level: 20, effect: { type: triangle_small, period: 12 } }
+    HOUSE: { level: 0 }
+  CHORUS:
+    fade: 2
+    PAR: { color: [100, 87, 70], level: 80 }
+    BARS: { color: [100, 67, 0], level: 75 }
+    MH: { level: 60, position: upper_wash }
+    HOUSE: { level: 0 }
+  CHORUS_2:
+    fade: 2
+    PAR: { color: [100, 87, 70], level: 95 }
+    BARS: { color: [100, 67, 0], level: 95 }
+    MH: { level: 75, position: upper_wash }
+    HOUSE: { level: 0 }
+  BRIDGE:
+    fade: 8
+    PAR: { color: [100, 0, 25], level: 85 }
+    BARS: { color: [100, 0, 42], level: 90 }
+    MH: { color: magenta, level: 70, effect: { type: wiper, period: 10 } }
+    HOUSE: { level: 0 }
+  CHORUS_3:
+    fade: 1
+    PAR: { color: [100, 87, 70], level: 100 }
+    BARS: { color: [100, 75, 0], level: 100 }
+    MH: { level: 100, position: upper_wash }
+    HOUSE: { level: 0 }
+  TAG:
+    fade: 5
+    PAR: { color: [17, 0, 100], level: 30 }
+    BARS: { color: [67, 0, 100], level: 35 }
+    MH: { position: upper_wash }
+    MH1: { level: 25 }
+    MH2: { color: blue }
+    MH3: { color: blue }
+    MH4: { color: blue }
+    HOUSE: { level: 0 }

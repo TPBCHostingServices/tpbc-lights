@@ -1,0 +1,44 @@
+# Song 2 (Youth page)
+# Converted from Lightkey (export 2026-11-11) by tools/convert-lightkey.ts.
+# Edit freely; this file is now the source of truth.
+
+page: Youth
+folder: Song_2
+
+cues:
+  INTRO:
+    fade: 3.5
+    PAR: { color: white, level: 60 }
+    BARS: { color: white, level: 25 }
+    MH: { color: white, position: upper_4_beams, gobo: beams_4 }
+    HOUSE: { level: 0 }
+  "VERSE 1":
+    fade: 3.5
+    PAR: { color: white, level: 60 }
+    BARS: { color: violet, level: 25 }
+    MH: { color: white, level: 15 }
+    HOUSE: { level: 0 }
+  "VERSE 2":
+    fade: 3.5
+    PAR: { color: white, level: 60 }
+    BARS: { color: white, level: 25 }
+    MH: { color: white, level: 10 }
+    HOUSE: { level: 0 }
+  CHORUS:
+    fade: 3.5
+    PAR: { color: white, level: 75 }
+    BARS: { color: white, level: 50 }
+    MH: { color: white, level: 10, position: floor_wash, gobo: moons }
+    HOUSE: { level: 0 }
+  BRIDGE:
+    fade: 3.5
+    PAR: { color: white, level: 100 }
+    BARS: { color: white, level: 100 }
+    MH: { color: white, level: 75, gobo: moons }
+    HOUSE: { level: 0 }
+  OUTRO:
+    fade: 3.5
+    PAR: { color: white, level: 60 }
+    BARS: { color: white, level: 50 }
+    MH: { color: white, level: 75, gobo: moons }
+    HOUSE: { level: 0 }

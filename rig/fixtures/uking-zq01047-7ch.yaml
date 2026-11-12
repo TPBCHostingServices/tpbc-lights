@@ -1,0 +1,16 @@
+# U'King ZQ01047 PAR, 7-channel mode. Used by P6 and P7.
+# Layout from the Lightkey export. No public QLC+/OFL definition was found, so the
+# fixed values below are the usual "manual RGB" values for this kind of PAR.
+# VERIFY ON THE BENCH (Gate A): if P6/P7 flash or run a program, change these.
+model: U'King ZQ01047
+mode: 7-ch
+type: rgb
+verify: true
+channels:
+  - dimmer
+  - red
+  - green
+  - blue
+  - { fixed: strobe, value: 0 }
+  - { fixed: function, value: 0 }
+  - { fixed: color_select, value: 0 }

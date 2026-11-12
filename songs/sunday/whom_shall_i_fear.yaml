@@ -1,0 +1,37 @@
+# Whom_Shall_I_Fear (Control Panel page)
+# Converted from Lightkey (export 2026-11-11) by tools/convert-lightkey.ts.
+# Edit freely; this file is now the source of truth.
+
+page: Control_Panel
+folder: Whom_Shall_I_Fear
+
+cues:
+  INTRO:
+    fade: 3
+    PAR: { color: [5, 0, 100], level: 20 }
+    BARS: { color: [0, 35, 100], level: 25 }
+  VERSE:
+    fade: 3.5
+    PAR: { color: [5, 0, 100], level: 35 }
+    BARS: { color: [50, 79, 100], level: 45 }
+    MH: { level: 15 }
+  CHORUS:
+    fade: 2
+    PAR: { color: white, level: 80 }
+    BARS: { color: [0, 35, 100], level: 85 }
+    MH: { level: 40 }
+  BRIDGE:
+    fade: 10
+    PAR: { color: white, level: 65 }
+    BARS: { color: [0, 35, 100], level: 70 }
+    MH: { level: 30 }
+  CHORUS_2:
+    fade: 2.5
+    PAR: { color: white, level: 100 }
+    BARS: { color: [50, 79, 100], level: 100 }
+    MH: { level: 60 }
+  TAG:
+    fade: 4
+    PAR: { color: [5, 0, 100], level: 30 }
+    BARS: { color: [0, 35, 100], level: 35 }
+    MH: { level: 20 }

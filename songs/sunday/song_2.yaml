@@ -1,0 +1,68 @@
+# Song 2 (Control Panel page)
+# Converted from Lightkey (export 2026-11-11) by tools/convert-lightkey.ts.
+# Edit freely; this file is now the source of truth.
+
+page: Control_Panel
+folder: Song_2
+
+cues:
+  INTRO:
+    fade: 3.5
+    PAR: { color: [30, 77, 100], level: 20 }
+    B1: { color: [0, 38, 100], level: 35 }
+    B2: { color: [0, 67, 100], level: 45 }
+    B3: { color: [0, 67, 100], level: 45 }
+    B4: { color: [0, 67, 100], level: 45 }
+    B5: { color: [0, 67, 100], level: 45 }
+    B6: { color: [0, 67, 100], level: 45 }
+    B7: { color: [0, 67, 100], level: 45 }
+    MH: { color: cyan, position: upper_wash }
+    HOUSE: { level: 0 }
+  VERSE:
+    fade: 3.5
+    PAR: { color: [30, 77, 100], level: 35 }
+    BARS: { color: [0, 67, 100], level: 45 }
+    MH: { color: cyan, level: 15, position: upper_wash }
+    HOUSE: { level: 0 }
+  PRE_CHORUS:
+    fade: 4
+    PAR: { color: [30, 57, 100], level: 45 }
+    BARS: { color: [5, 0, 100], level: 50 }
+    MH: { color: blue, level: 25, position: upper_wash }
+    HOUSE: { level: 0 }
+  CHORUS:
+    fade: 3
+    PAR: { color: [43, 40, 100], level: 60 }
+    BARS: { color: [63, 0, 100], level: 70 }
+    MH: { color: magenta, level: 40, position: upper_wash }
+    HOUSE: { level: 0 }
+  CHORUS_2:
+    fade: 3
+    PAR: { color: [78, 40, 100], level: 70 }
+    BARS: { color: [63, 0, 100], level: 80 }
+    MH: { color: magenta, level: 55, position: upper_wash }
+    HOUSE: { level: 0 }
+  BRIDGE:
+    fade: 8
+    PAR: { color: [24, 20, 100], level: 35 }
+    BARS: { color: [5, 0, 100], level: 45 }
+    MH: { color: blue, level: 20, position: upper_wash }
+    HOUSE: { level: 0 }
+  CHORUS_3:
+    fade: 2
+    PAR: { color: [85, 60, 100], level: 100 }
+    BARS: { color: [63, 0, 100], level: 100 }
+    MH: { level: 100, position: upper_wash }
+    HOUSE: { level: 0 }
+  BRIDGE_2:
+    fade: 6
+    PAR: { color: [24, 20, 100], level: 45 }
+    BARS: { color: [33, 0, 100], level: 55 }
+    MH: { color: magenta, level: 30, position: upper_wash }
+    HOUSE: { level: 0 }
+  CHORUS_4:
+    fade: 3
+    PAR: { color: [82, 50, 100], level: 85 }
+    BARS: { color: [63, 0, 100], level: 90 }
+    MH: { color: magenta, level: 70, position: upper_wash }
+    HOUSE: { level: 0 }

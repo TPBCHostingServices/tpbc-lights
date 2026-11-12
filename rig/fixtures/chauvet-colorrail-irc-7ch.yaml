@@ -1,0 +1,14 @@
+# Chauvet COLORrail IRC, 7-channel mode. Used by B1, B2, B4, B5, B6, B7.
+# Channel values: QLC+ Chauvet-COLORrail-IRC2.qxf (7 Channel mode has the same layout
+# as the Lightkey export for these bars).
+model: Chauvet COLORrail IRC
+mode: 7-ch
+type: rgb
+channels:
+  - dimmer
+  - red
+  - green
+  - blue
+  - { fixed: color_macro, value: 0 }   # 0-7 = no function
+  - { fixed: program_speed, value: 0 }
+  - { fixed: strobe, value: 0 }        # 0 = no function

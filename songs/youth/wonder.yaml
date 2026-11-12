@@ -1,0 +1,71 @@
+# Wonder (Youth page)
+# Converted from Lightkey (export 2026-11-11) by tools/convert-lightkey.ts.
+# Edit freely; this file is now the source of truth.
+
+page: Youth
+folder: Wonder
+
+cues:
+  INTRO:
+    fade: 3
+    PAR: { color: [76, 50, 100], level: 20 }
+    BARS: { color: cyan, level: 30 }
+    MH: { color: blue, position: upper_wash }
+    HOUSE: { level: 0 }
+  VERSE:
+    fade: 2
+    PAR: { color: [76, 50, 100], level: 40 }
+    BARS: { color: cyan, level: 45 }
+    MH: { level: 20, position: upper_wash, effect: { type: triangle_small, period: 12 } }
+    HOUSE: { level: 0 }
+  CHORUS:
+    fade: 1.5
+    PAR: { level: 85 }
+    P1: { color: pink }
+    P2: { color: pink }
+    P3: { color: [100, 65, 0] }
+    P4: { color: cyan }
+    P5: { color: pink }
+    P6: { color: cyan }
+    P7: { color: [100, 65, 0] }
+    BARS: { color: dark_blue, level: 85 }
+    MH: { level: 70, position: upper_wash, effect: { type: wiper, period: 8 } }
+    HOUSE: { level: 0 }
+  BRIDGE:
+    fade: 8
+    PAR: { color: [76, 50, 100], level: 50 }
+    BARS: { color: cyan, level: 60 }
+    MH: { level: 40, position: upper_wash, effect: { type: pan_track, period: 12 } }
+    HOUSE: { level: 0 }
+  BRIDGE_2:
+    fade: 4
+    PAR: { color: pink, level: 90 }
+    BARS: { color: cyan, level: 90 }
+    MH: { level: 90, position: upper_wash, effect: { type: wiper, period: 8 } }
+    HOUSE: { level: 0 }
+  CHORUS_2:
+    fade: 1
+    PAR: { level: 100 }
+    P1: { color: pink }
+    P2: { color: pink }
+    P3: { color: [100, 65, 0] }
+    P4: { color: cyan }
+    P5: { color: pink }
+    P6: { color: cyan }
+    P7: { color: [100, 65, 0] }
+    BARS: { color: pink, level: 100 }
+    MH: { level: 100, position: { pan: -152.7, tilt: 65.6 }, effect: { type: wiper, period: 4 } }
+    HOUSE: { level: 0 }
+  CHORUS_3:
+    fade: 1
+    PAR: { level: 100 }
+    P1: { color: pink }
+    P2: { color: pink }
+    P3: { color: [100, 65, 0] }
+    P4: { color: cyan }
+    P5: { color: pink }
+    P6: { color: cyan }
+    P7: { color: [100, 65, 0] }
+    BARS: { color: cyan, level: 100 }
+    MH: { level: 100, position: upper_wash }
+    HOUSE: { level: 0 }

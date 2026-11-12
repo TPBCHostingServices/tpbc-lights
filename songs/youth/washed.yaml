@@ -1,0 +1,61 @@
+# Washed (Youth page)
+# Converted from Lightkey (export 2026-11-11) by tools/convert-lightkey.ts.
+# Edit freely; this file is now the source of truth.
+
+page: Youth
+folder: Washed
+
+cues:
+  INTRO:
+    fade: 3
+    PAR: { color: dark_blue, level: 20 }
+    BARS: { color: dark_blue, level: 30 }
+    MH: { color: blue, position: upper_wash }
+    HOUSE: { level: 0 }
+  VERSE:
+    fade: 2
+    BARS: { level: 76 }
+    HOUSE: { level: 0 }
+  CHORUS:
+    fade: 1.5
+    PAR: { color: cyan, level: 85 }
+    BARS: { color: dark_blue, level: 85 }
+    MH: { level: 70, position: upper_wash, effect: { type: wiper, period: 10 } }
+    HOUSE: { level: 0 }
+  BRIDGE:
+    fade: 6
+    PAR: { color: dark_blue, level: 50 }
+    BARS: { color: cyan, level: 60 }
+    MH: { color: cyan, level: 40, position: upper_wash, effect: { type: pan_track, period: 8 } }
+    HOUSE: { level: 0 }
+  BRIDGE_2:
+    fade: 4
+    PAR: { color: cyan, level: 90 }
+    BARS: { color: [0, 23, 100], level: 90 }
+    MH: { level: 90, position: upper_wash }
+    HOUSE: { level: 0 }
+  CHORUS_2:
+    fade: 1
+    PAR: { level: 100 }
+    P1: { color: cyan }
+    P2: { color: white }
+    P3: { color: cyan }
+    P4: { color: white }
+    P5: { color: cyan }
+    P6: { color: white }
+    P7: { color: cyan }
+    BARS: { color: dark_blue, level: 100 }
+    MH: { level: 100, position: { pan: -152.7, tilt: 65.6 }, effect: { type: wiper, period: 5 } }
+    HOUSE: { level: 0 }
+  TAG:
+    fade: 0.5
+    PAR: { color: white, level: 100 }
+    BARS: { color: cyan, level: 100 }
+    MH: { level: 100, position: upper_wash }
+    HOUSE: { level: 0 }
+  OUTRO:
+    fade: 4
+    PAR: { color: dark_blue, level: 20 }
+    BARS: { color: dark_blue, level: 25 }
+    MH: { color: blue, position: upper_wash }
+    HOUSE: { level: 0 }

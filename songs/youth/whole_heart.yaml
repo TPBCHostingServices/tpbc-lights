@@ -1,0 +1,50 @@
+# Whole_Heart (Youth page)
+# Converted from Lightkey (export 2026-11-11) by tools/convert-lightkey.ts.
+# Edit freely; this file is now the source of truth.
+
+page: Youth
+folder: Whole_Heart
+
+cues:
+  INTRO:
+    fade: 3
+    PAR: { color: [75, 50, 100], level: 20 }
+    BARS: { color: [40, 65, 100], level: 30 }
+    MH: { color: blue, position: upper_wash }
+    HOUSE: { level: 0 }
+  VERSE:
+    fade: 3
+    PAR: { color: [75, 50, 100], level: 35 }
+    BARS: { color: [0, 33, 100], level: 45 }
+    MH: { level: 15, position: upper_wash }
+    HOUSE: { level: 0 }
+  PRE_CHORUS:
+    fade: 4
+    PAR: { color: [58, 0, 100], level: 50 }
+    BARS: { color: [58, 0, 100], level: 55 }
+    MH: { level: 35, position: upper_wash, effect: { type: tilt_wave, period: 6 } }
+    HOUSE: { level: 0 }
+  CHORUS:
+    fade: 1.5
+    PAR: { color: [80, 90, 100], level: 85 }
+    BARS: { color: [0, 92, 100], level: 85 }
+    MH: { level: 70, position: upper_wash }
+    HOUSE: { level: 0 }
+  CHORUS_2:
+    fade: 1.5
+    PAR: { color: [80, 90, 100], level: 100 }
+    BARS: { color: [0, 92, 100], level: 100 }
+    MH: { level: 100, position: upper_wash, effect: { type: wiper, period: 10 } }
+    HOUSE: { level: 0 }
+  TAG:
+    fade: 4
+    PAR: { color: [58, 0, 100], level: 40 }
+    BARS: { color: [58, 0, 100], level: 45 }
+    MH: { level: 30, position: upper_wash }
+    HOUSE: { level: 0 }
+  CHORUS_3:
+    fade: 1
+    PAR: { color: white, level: 100 }
+    BARS: { color: [100, 0, 67], level: 100 }
+    MH: { level: 100, position: upper_wash }
+    HOUSE: { level: 0 }

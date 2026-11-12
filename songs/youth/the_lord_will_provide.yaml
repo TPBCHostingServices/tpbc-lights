@@ -1,0 +1,44 @@
+# The_Lord_Will_Provide (Youth page)
+# Converted from Lightkey (export 2026-11-11) by tools/convert-lightkey.ts.
+# Edit freely; this file is now the source of truth.
+
+page: Youth
+folder: The_Lord_Will_Provide
+
+cues:
+  VERSE:
+    fade: 3
+    PAR: { color: [0, 100, 76], level: 35 }
+    BARS: { color: [0, 100, 8], level: 45 }
+    MH: { color: cyan, level: 15 }
+    HOUSE: { level: 0 }
+  CHORUS:
+    fade: 2
+    PAR: { color: [100, 91, 80], level: 85 }
+    BARS: { color: [0, 100, 76], level: 85 }
+    MH: { level: 70, position: upper_wash }
+    HOUSE: { level: 0 }
+  BRIDGE:
+    fade: 8
+    PAR: { color: dark_blue, level: 50 }
+    BARS: { color: [0, 100, 76], level: 60 }
+    MH: { color: cyan, level: 40, position: upper_wash, effect: { type: pan_track, period: 8 } }
+    HOUSE: { level: 0 }
+  CHORUS_2:
+    fade: 1
+    PAR: { color: [100, 91, 80], level: 100 }
+    BARS: { color: [100, 82, 0], level: 100 }
+    MH: { level: 100, position: upper_wash }
+    HOUSE: { level: 0 }
+  BRIDGE_2:
+    fade: 6
+    PAR: { color: [100, 82, 0], level: 90 }
+    BARS: { color: [100, 61, 0], level: 90 }
+    MH: { level: 90, position: upper_wash }
+    HOUSE: { level: 0 }
+  OUTRO:
+    fade: 5
+    PAR: { color: [0, 100, 76], level: 20 }
+    BARS: { color: [0, 100, 8], level: 25 }
+    MH: { level: 100, position: upper_wash }
+    HOUSE: { level: 0 }

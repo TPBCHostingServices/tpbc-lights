@@ -1,0 +1,4 @@
+# Moving-head aims in Lightkey angles (degrees). pan 0-540, tilt -135..+135.
+upper_wash:    { pan: 270.0, tilt: 98.9 }   # main crowd aim; every song cue uses it
+upper_4_beams: { pan: 270.0, tilt: 96.5 }
+floor_wash:    { pan: 91.0, tilt: -135.0 }
