@@ -17,6 +17,7 @@
     "monitor": "node tools/artnet-monitor.ts",
     "reload": "node tools/reload.ts",
     "addresses": "node tools/addresses.ts",
+    "import-qxf": "node tools/import-qxf.ts",
     "convert-lightkey": "node tools/convert-lightkey.ts"
   },
   "dependencies": {

@@ -215,3 +215,52 @@ test('service lock windows', async () => {
   assert.equal(lockedNow(cfg, new Date(2026, 10, 15, 13, 30)), null); // end is exclusive
   assert.equal(lockedNow(cfg, new Date(2026, 10, 16, 10, 0)), null);  // Monday
 });
+
+// ---------- fixture profiles ----------
+import { readdirSync, readFileSync } from 'node:fs';
+import { parse as parseYaml } from 'yaml';
+import { convertQxf, parseQxf } from '../tools/import-qxf.ts';
+
+test('every fixture profile is complete for its type', () => {
+  const dir = join(root, 'rig/fixtures');
+  for (const f of readdirSync(dir).filter(f => f.endsWith('.yaml'))) {
+    const y = parseYaml(readFileSync(join(dir, f), 'utf8'));
+    const attrs = (y.channels as any[]).filter(c => typeof c === 'string');
+    const need: Record<string, string[]> = { rgb: ['dimmer', 'red', 'green', 'blue'], spot: ['pan', 'tilt', 'wheel', 'shutter', 'dimmer'], dimmer: ['dimmer'] };
+    assert.ok(need[y.type], `${f}: bad type ${y.type}`);
+    for (const a of need[y.type]) assert.ok(attrs.includes(a), `${f}: ${y.type} needs a "${a}" channel`);
+    assert.equal(new Set(attrs).size, attrs.length, `${f}: a channel attribute is used twice`);
+    if (y.type === 'spot') {
+      assert.ok(y.wheel?.length, `${f}: no colour wheel`);
+      for (const w of y.wheel) assert.ok(Number.isInteger(w.dmx) && w.dmx >= 0 && w.dmx <= 255, `${f}: wheel ${w.name} dmx out of range`);
+    }
+  }
+});
+
+const SAMPLE_QXF = `<?xml version="1.0"?><FixtureDefinition xmlns="http://www.qlcplus.org/FixtureDefinition">
+<Manufacturer>Acme</Manufacturer><Model>Spot &amp; Co 5</Model><Type>Moving Head</Type>
+<Channel Name="Pan"><Group Byte="0">Pan</Group></Channel>
+<Channel Name="Pan Fine"><Group Byte="1">Pan</Group></Channel>
+<Channel Name="Tilt"><Group Byte="0">Tilt</Group></Channel>
+<Channel Name="Colors"><Group Byte="0">Colour</Group>
+ <Capability Min="0" Max="9">White</Capability><Capability Min="10" Max="19">Red</Capability><Capability Min="20" Max="29">Blue</Capability></Channel>
+<Channel Name="Shutter"><Group Byte="0">Shutter</Group>
+ <Capability Min="0" Max="3">Closed</Capability><Capability Min="4" Max="255">Open</Capability></Channel>
+<Channel Name="Dimmer"><Group Byte="0">Intensity</Group></Channel>
+<Channel Name="Speed"><Group Byte="0">Speed</Group></Channel>
+<Mode Name="7 Channel"><Channel Number="0">Pan</Channel><Channel Number="1">Pan Fine</Channel><Channel Number="2">Tilt</Channel>
+<Channel Number="3">Colors</Channel><Channel Number="4">Shutter</Channel><Channel Number="5">Dimmer</Channel><Channel Number="6">Speed</Channel></Mode>
+</FixtureDefinition>`;
+
+test('QLC+ importer: reads a .qxf into a profile', () => {
+  assert.deepEqual(Object.keys(parseQxf(SAMPLE_QXF).modes), ['7 Channel']);
+  const r = convertQxf(SAMPLE_QXF, '7 Channel');
+  assert.equal(r.id, 'acme-spot-co-5-7-channel');
+  const p: any = r.profile;
+  assert.equal(p.type, 'spot');
+  assert.equal(p.verify, true);
+  assert.deepEqual(p.channels, ['pan', 'pan_fine', 'tilt', 'wheel', 'shutter', 'dimmer', { fixed: 'speed', value: 0 }]);
+  assert.deepEqual(p.wheel.map((w: any) => [w.name, w.dmx]), [['white', 5], ['red', 15], ['blue', 25]]);
+  assert.deepEqual(p.shutter, { open: 255, closed: 0 });
+  assert.throws(() => convertQxf(SAMPLE_QXF, 'nope'), /not found/);
+});

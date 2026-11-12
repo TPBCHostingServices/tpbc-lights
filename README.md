@@ -32,6 +32,7 @@ npm run send -- <addr> [fade] [--host ip]   send one OSC message (like FreeShow)
 npm run monitor           print Art-Net channels as they change
 npm run reload            check, then hot-reload the running service
 npm run addresses         list every OSC address the show answers
+npm run import-qxf -- f.qxf [--mode "11 Channel"]   turn a QLC+ fixture file into a profile (marked verify)
 ```
 
 Node 22.18 or newer runs the TypeScript directly; there is no build step.
